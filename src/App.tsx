@@ -20,6 +20,7 @@ function App() {
 
       <div>
         <TonConnectButton />
+        
       </div>
 
       <div>
