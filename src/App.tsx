@@ -2,6 +2,7 @@ import "./App.css";
 import { TonConnectButton } from "@tonconnect/ui-react";
 import { useMainContract } from "./hooks/useMainContract";
 import { useTonConnect } from "./hooks/useTonConnect";
+import WebApp from "@twa-dev/sdk";
 
 function App() {
   const {
@@ -15,6 +16,10 @@ function App() {
 
   const { connected } = useTonConnect();
 
+  const showAlert = () => {
+    WebApp.showAlert("")
+  }
+
   return (
     <div>
 
@@ -25,6 +30,7 @@ function App() {
 
       <div>
         <div className='Card'>
+          <b>{WebApp.platform}</b>
           <b>Our contract Address</b>
           <div className='Hint'>{contract_address?.slice(0, 30) + "..."}</div>
           
@@ -39,34 +45,48 @@ function App() {
         
       </div>
 
+      <a
+          onClick={() => {
+            showAlert();
+          }}
+      >
+          Show alert!
+      </a>
+
+      <br/>
+
       {connected && (
-              <a
-                onClick={() => {
-                  sendIncrement();
-                }}
-              >
-                Increment
-              </a>
+        <a
+          onClick={() => {
+            sendIncrement();
+          }}
+        >
+          Increment
+        </a>
       )}
-      <div> </div>
+
+      <br/>
+      
       {connected && (
-              <a
-                onClick={() => {
-                  sendDeposit();
-                }}
-              >
-                Send Deposit
-              </a>
+        <a
+          onClick={() => {
+            sendDeposit();
+          }}
+        >
+          Send Deposit
+        </a>
       )}
-      <div> </div>
+
+      <br/>
+
       {connected && (
-              <a
-                onClick={() => {
-                  sendWithdrawalRequest();
-                }}
-              >
-                Withdraw
-              </a>
+        <a
+          onClick={() => {
+            sendWithdrawalRequest();
+          }}
+        >
+          Withdraw
+        </a>
       )}
       
     </div>
